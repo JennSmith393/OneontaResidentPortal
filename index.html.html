@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Oneonta Resident Rentals – Find Your Home in Oneonta, NY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --purple:       #6B3FA0;
+  --purple-dark:  #3d1f6b;
+  --purple-deep:  #2a1249;
+  --purple-light: #9b6dd6;
+  --purple-pale:  #f0eaf8;
+  --purple-mid:   #c9a8f0;
+  --cream:        #faf8ff;
+  --charcoal:     #1a1a2e;
+  --mid:          #6b7280;
+  --border:       #e2d5f5;
+  --white:        #ffffff;
+  --shadow:       0 4px 24px rgba(107,63,160,0.12);
+  --shadow-lg:    0 16px 48px rgba(107,63,160,0.20);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 72px;
+  box-shadow: 0 2px 16px rgba(107,63,160,0.06);
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo img { height: 48px; width: 48px; object-fit: contain; border-radius: 10px; }
+.nav-logo-text { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--purple-dark); line-height: 1.2; }
+.nav-logo-text span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.67rem; font-weight: 600; color: var(--purple-light); letter-spacing: 0.08em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 4px; list-style: none; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--mid); font-size: 0.88rem; font-weight: 500; padding: 7px 14px; border-radius: 8px; transition: all .18s; }
+.nav-links a:hover { color: var(--purple); background: var(--purple-pale); }
+.nav-links a.active { color: var(--purple-dark); font-weight: 600; }
+.nav-cta { background: var(--purple) !important; color: white !important; border-radius: 9px !important; padding: 9px 20px !important; font-weight: 600 !important; box-shadow: 0 3px 12px rgba(107,63,160,0.3) !important; }
+.nav-cta:hover { background: var(--purple-dark) !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: all .2s; }
+.mobile-menu { display: none; position: fixed; top: 72px; left: 0; right: 0; background: white; border-bottom: 1px solid var(--border); padding: 20px 24px; z-index: 199; box-shadow: 0 8px 24px rgba(107,63,160,0.1); }
+.mobile-menu.open { display: flex; flex-direction: column; gap: 8px; }
+.mobile-menu a { text-decoration: none; color: var(--charcoal); font-size: 1rem; font-weight: 500; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.mobile-menu a:last-child { border-bottom: none; color: var(--purple); font-weight: 700; }
+
+/* HERO */
+.hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden; }
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80');
+  background-size: cover; background-position: center 30%;
+  filter: brightness(0.38); transform: scale(1.03); transition: transform 8s ease;
+}
+.hero:hover .hero-bg { transform: scale(1.0); }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(61,31,107,0.85) 0%, rgba(107,63,160,0.55) 60%, rgba(155,109,214,0.25) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2; max-width: 1160px; margin: 0 auto;
+  padding: 80px 48px; display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: center; width: 100%;
+}
+.hero-left { color: white; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 24px; padding: 6px 16px 6px 10px;
+  font-size: 0.76rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+  margin-bottom: 24px; backdrop-filter: blur(8px);
+}
+.hero-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #c084fc; display: inline-block; box-shadow: 0 0 8px #c084fc; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; }
+.hero h1 em { font-style: italic; color: var(--purple-mid); }
+.hero-sub { font-size: 1.08rem; opacity: 0.85; line-height: 1.7; max-width: 500px; margin-bottom: 36px; font-weight: 300; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: white; color: var(--purple-dark); padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.95rem; box-shadow: 0 6px 24px rgba(0,0,0,0.2); transition: transform .2s, box-shadow .2s; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.25); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.13); color: white; border: 1.5px solid rgba(255,255,255,0.3); padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 0.95rem; backdrop-filter: blur(8px); transition: background .2s; }
+.btn-secondary:hover { background: rgba(255,255,255,0.22); }
+.hero-trust { display: flex; gap: 28px; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 10px; }
+.trust-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.12); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.trust-text { color: rgba(255,255,255,0.9); }
+.trust-text strong { display: block; font-size: 1rem; color: white; }
+.trust-text span { font-size: 0.75rem; opacity: 0.7; }
+
+/* HERO CARD */
+.hero-card { background: rgba(255,255,255,0.97); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-lg); backdrop-filter: blur(20px); animation: slideIn .6s ease .2s both; }
+@keyframes slideIn { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:none; } }
+.hero-card-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.hero-card-logo img { height: 52px; width: 52px; object-fit: contain; border-radius: 10px; }
+.hero-card-logo-text { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--purple-dark); line-height: 1.3; }
+.hero-card-logo-text span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.7rem; color: var(--mid); font-weight: 500; }
+.hero-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--charcoal); margin-bottom: 6px; }
+.hero-card p { font-size: 0.85rem; color: var(--mid); line-height: 1.55; margin-bottom: 22px; }
+.quick-search { display: flex; flex-direction: column; gap: 12px; }
+.qs-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--mid); }
+.qs-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.qs-chip { padding: 7px 14px; border-radius: 20px; border: 1.5px solid var(--border); background: white; font-size: 0.8rem; font-weight: 500; color: var(--mid); cursor: pointer; transition: all .15s; }
+.qs-chip:hover, .qs-chip.sel { background: var(--purple-pale); border-color: var(--purple); color: var(--purple-dark); }
+.qs-btn { display: block; width: 100%; padding: 13px; background: var(--purple); color: white; border: none; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; transition: background .15s; margin-top: 4px; box-shadow: 0 4px 16px rgba(107,63,160,0.3); }
+.qs-btn:hover { background: var(--purple-dark); }
+.qs-free { text-align: center; font-size: 0.75rem; color: var(--mid); margin-top: 10px; }
+.qs-free span { color: var(--purple); font-weight: 600; }
+
+/* HOW IT WORKS */
+.section { padding: 80px 48px; max-width: 1160px; margin: 0 auto; }
+.section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; }
+.section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--charcoal); margin-bottom: 14px; line-height: 1.2; }
+.section-sub { font-size: 1rem; color: var(--mid); max-width: 560px; line-height: 1.65; margin-bottom: 52px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.step { background: white; border-radius: 18px; padding: 32px 28px; border: 1px solid var(--border); box-shadow: var(--shadow); position: relative; overflow: hidden; transition: transform .22s, box-shadow .22s; }
+.step:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.step::before { content: attr(data-num); position: absolute; top: -12px; right: 20px; font-family: 'DM Serif Display', serif; font-size: 5rem; color: var(--purple-pale); line-height: 1; font-weight: 400; pointer-events: none; }
+.step-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--purple-pale); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 18px; }
+.step h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: 10px; color: var(--charcoal); }
+.step p { font-size: 0.88rem; color: var(--mid); line-height: 1.6; }
+
+/* LISTINGS */
+.listings-section { background: white; padding: 80px 0; }
+.listings-inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.listings-header-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
+.view-all { font-size: 0.88rem; font-weight: 600; color: var(--purple); text-decoration: none; }
+.view-all:hover { color: var(--purple-dark); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+.card { background: var(--cream); border-radius: 18px; border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); transition: transform .25s, box-shadow .25s; display: flex; flex-direction: column; animation: fadeUp .5s ease both; }
+.card:nth-child(2) { animation-delay: .1s; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.card-img { position: relative; height: 200px; overflow: hidden; background: var(--purple-pale); }
+.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.card:hover .card-img img { transform: scale(1.05); }
+.card-badge { position: absolute; top: 12px; left: 12px; background: var(--purple); color: white; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 11px; border-radius: 20px; }
+.card-badge.storage { background: #7a3a8a; }
+.card-price { position: absolute; bottom: 12px; right: 12px; background: rgba(26,26,46,0.85); backdrop-filter: blur(6px); color: white; font-family: 'DM Serif Display', serif; font-size: 1.2rem; padding: 5px 13px; border-radius: 10px; }
+.card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+.card-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin-bottom: 12px; }
+.card-meta { display: flex; gap: 16px; margin-bottom: 14px; }
+.meta { display: flex; align-items: center; gap: 5px; font-size: 0.82rem; color: var(--mid); font-weight: 500; }
+.card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; padding: 3px 9px; border-radius: 5px; background: var(--purple-pale); color: var(--purple-dark); }
+.card-footer { margin-top: auto; display: flex; gap: 10px; }
+.btn-view { flex: 1; padding: 11px; background: var(--purple); color: white; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; text-decoration: none; text-align: center; transition: background .15s; }
+.btn-view:hover { background: var(--purple-dark); }
+.btn-save { padding: 11px 14px; background: white; color: var(--mid); border: 1.5px solid var(--border); border-radius: 10px; font-size: 1rem; cursor: pointer; transition: all .15s; }
+.btn-save:hover { border-color: var(--purple); color: var(--purple); }
+
+/* WHY US */
+.why-section { background: linear-gradient(135deg, var(--purple-deep) 0%, var(--purple-dark) 50%, var(--purple) 100%); padding: 80px 48px; }
+.why-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.why-left { color: white; }
+.why-left .section-label { color: var(--purple-mid); }
+.why-left .section-title { color: white; margin-bottom: 16px; }
+.why-left .section-sub { color: rgba(255,255,255,0.75); max-width: 420px; }
+.why-right { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.why-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 24px 20px; color: white; transition: background .2s; }
+.why-card:hover { background: rgba(255,255,255,0.16); }
+.why-icon { font-size: 1.6rem; margin-bottom: 12px; }
+.why-card h4 { font-family: 'DM Serif Display', serif; font-size: 1.05rem; margin-bottom: 7px; }
+.why-card p { font-size: 0.82rem; opacity: 0.75; line-height: 1.55; }
+
+/* COMMUNITY */
+.community { padding: 80px 48px; max-width: 1160px; margin: 0 auto; text-align: center; }
+.community .section-label, .community .section-title, .community .section-sub { margin-left: auto; margin-right: auto; }
+.community .section-sub { margin-bottom: 0; }
+.quote-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+.quote-card { background: white; border-radius: 16px; padding: 28px 24px; border: 1px solid var(--border); box-shadow: var(--shadow); text-align: left; }
+.quote-text { font-size: 0.92rem; line-height: 1.65; color: var(--charcoal); margin-bottom: 18px; font-style: italic; }
+.quote-author { display: flex; align-items: center; gap: 10px; }
+.quote-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--purple-pale); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.quote-name { font-size: 0.85rem; font-weight: 600; color: var(--charcoal); }
+.quote-role { font-size: 0.75rem; color: var(--mid); }
+.stars { color: #f59e0b; font-size: 0.85rem; margin-bottom: 12px; }
+
+/* CTA STRIP */
+.cta-strip { background: var(--purple-pale); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 64px 48px; text-align: center; }
+.cta-strip h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--purple-dark); margin-bottom: 12px; }
+.cta-strip p { color: var(--mid); max-width: 520px; margin: 0 auto 32px; line-height: 1.65; }
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.cta-btn-main { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: var(--purple); color: white; border-radius: 11px; text-decoration: none; font-weight: 700; font-size: 0.95rem; box-shadow: 0 4px 20px rgba(107,63,160,0.3); transition: all .18s; }
+.cta-btn-main:hover { background: var(--purple-dark); transform: translateY(-2px); }
+.cta-btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: white; color: var(--purple-dark); border: 1.5px solid var(--border); border-radius: 11px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all .18s; }
+.cta-btn-outline:hover { border-color: var(--purple); color: var(--purple); }
+
+/* FOOTER */
+footer { background: var(--charcoal); color: rgba(255,255,255,0.65); padding: 56px 48px 32px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+.footer-brand-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.footer-brand-logo img { height: 48px; width: 48px; object-fit: contain; border-radius: 10px; background: white; padding: 4px; }
+.footer-brand-name { font-family: 'DM Serif Display', serif; color: white; font-size: 1.1rem; }
+.footer-brand-name span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 600; color: var(--purple-light); letter-spacing: 0.07em; text-transform: uppercase; }
+.footer-desc { font-size: 0.875rem; line-height: 1.65; margin-bottom: 20px; }
+.footer-contact-item { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; margin-bottom: 8px; }
+.footer-contact-item a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color .15s; }
+.footer-contact-item a:hover { color: white; }
+.footer-col h4 { color: white; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.footer-col a { display: block; color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.875rem; margin-bottom: 9px; transition: color .15s; }
+.footer-col a:hover { color: white; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; flex-wrap: wrap; gap: 10px; }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-card { display: none; }
+  .steps { grid-template-columns: 1fr; }
+  .why-inner { grid-template-columns: 1fr; }
+  .quote-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .section, .why-section, .cta-strip { padding: 56px 24px; }
+  .hero-content { padding: 60px 24px; }
+  .listings-inner { padding: 0 24px; }
+  footer { padding: 40px 24px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://www.oneontaresidentrentals.com">
+    <img src="data:image/png;base64,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VEJkdje3sZBzn1Lsvdvp6Z8VwoW9Lb5XEBrycscObHY4+HaE0IVFMVr7bS1VUxlA159ERNc9xDRjJJOckrvr22+jbbZfN0UjZ4Gyyt6R/PeIIHHhwCaEAinNPUtvnuTzVMJp5peggycbrnZw71cPaFFPjdS1ropog50Ty17DkZxw6k0OhZdqrjQVgqfJ4ajAI3Jm5ac9yytUU9NSXiakpIejjiIAy4knIB45XNoozPb6qqipvKpoXMAi4nDTnLsDieQHrTXIzvfY75ktP6D+Ke+x3zJaf0H8VC3B9O97HQU5gO4BIzJI3uOSM8ccuCxvUp7pFk99jvmS0/of4p77HfMlp/Q/xVaRR3SMq5VXltbJU9BFBv49CJuGjh1LFRFAIiICIiAiIgIiICIiCftEksGnK4xSxNmfLG9jXObkhucnBXxfWx3FkV2p5Y9+Ubs8BkG9G8cOAJ+KeY7FBop2LReXVwFEyknjdH5vZBKxs7SM4IcCM8+KjoqHoKmVlPcY21cDWuYWSBoc482td14Hf2qIRNiwXueoraKiirXRyXFr3je3m73R8Mbx5Zzn1JqOEz32N0MkL2OiiAcJW49FjQeOepV9E2LBqSjfVaiqpop6XoJJN5spnbu4xz5riqqYKq7W6mo371PRtZGJHEN38HLnceQUAibFmvEddWXerpm1cJpJqjfa99Q0saMnBHHhwPUo50IFmmdFKxzW1ILMvAc5oBG9u5z2KKRNiwT18Fwss81Q7duMUbYif6dm83BP0hjHgunRwDb7DO98ccUe9vue8NAy1wHNQqJvkdlRG6KUxvxvDngg/WFL6PO5dHzOkjjDYJAHPeG8S0gc+9QiKBYZX+drR5PNNFFXUJ9FpeGtmYezq3h29YX3S+UxaVY2mqGxTit6XdbO1rt3cxnGe1VtFOxMtpJBcKaonng6eeo6RzA9uGNBySTnA6+HclHWMoa+qo6sCWhncWzMaQcdj2945qGRNiQvYYbxUMgkbKzf3WPBGHDAAKztQRE0trDXxPMdM2J4bK0lrt4nBwVAomxM1cktthpaeMUz91vSOd6EnpniePHlwHqXdqmn8ouTKyB8LvKmNe9rZW+hIR6QPHhyyoBE2LFqejlrdRVEtO+nfFI9obJ07A34oGc5WLTU74Jp5LZX4qYZdxm7IGmRnW4doz1dih0TYmdTVJqXUjpzG6tEOKlzMcXbxxnHDOMZUMiJM7BERQCIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiD/9k=" alt="Oneonta Resident Rentals Logo">
+    <div class="nav-logo-text">
+      Oneonta Resident Rentals
+      <span>Oneonta, NY</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://www.oneontaresidentrentals.com" class="active">Home</a></li>
+    <li><a href="https://www.oneontaresidentrentals.com/available-units">All Units</a></li>
+    <li><a href="https://www.oneontaresidentrentals.com/about">About Us</a></li>
+    <li><a href="https://www.oneontaresidentrentals.com/contact-8">Contact</a></li>
+    <li><a href="https://www.oneontaresidentrentals.com/pricing-plans/list" class="nav-cta">+ List Free</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://www.oneontaresidentrentals.com">Home</a>
+  <a href="https://www.oneontaresidentrentals.com/available-units">All Units</a>
+  <a href="https://www.oneontaresidentrentals.com/about">About Us</a>
+  <a href="https://www.oneontaresidentrentals.com/contact-8">Contact</a>
+  <a href="https://www.oneontaresidentrentals.com/pricing-plans/list">+ List Your Property Free</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Oneonta, NY · Non-Student Community Rentals</div>
+      <h1>Find a Place<br>to Call <em>Home</em><br>in Oneonta</h1>
+      <p class="hero-sub">We connect local landlords with Oneonta residents — completely free. No tech skills needed to list, no fees to browse. Just neighbors helping neighbors.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://www.oneontaresidentrentals.com/available-units">🏠 Browse Available Units</a>
+        <a class="btn-secondary" href="https://www.oneontaresidentrentals.com/pricing-plans/list">List Your Property Free →</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <div class="trust-icon">✅</div>
+          <div class="trust-text"><strong>100% Free</strong><span>No listing fees, ever</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🏘</div>
+          <div class="trust-text"><strong>Local Only</strong><span>Oneonta community</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">📞</div>
+          <div class="trust-text"><strong>(607) 386-4107</strong><span>We're here to help</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-card-logo">
+        <img src="data:image/png;base64,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VEJkdje3sZBzn1Lsvdvp6Z8VwoW9Lb5XEBrycscObHY4+HaE0IVFMVr7bS1VUxlA159ERNc9xDRjJJOckrvr22+jbbZfN0UjZ4Gyyt6R/PeIIHHhwCaEAinNPUtvnuTzVMJp5peggycbrnZw71cPaFFPjdS1ropog50Ty17DkZxw6k0OhZdqrjQVgqfJ4ajAI3Jm5ac9yytUU9NSXiakpIejjiIAy4knIB45XNoozPb6qqipvKpoXMAi4nDTnLsDieQHrTXIzvfY75ktP6D+Ke+x3zJaf0H8VC3B9O97HQU5gO4BIzJI3uOSM8ccuCxvUp7pFk99jvmS0/of4p77HfMlp/Q/xVaRR3SMq5VXltbJU9BFBv49CJuGjh1LFRFAIiICIiAiIgIiICIiCftEksGnK4xSxNmfLG9jXObkhucnBXxfWx3FkV2p5Y9+Ubs8BkG9G8cOAJ+KeY7FBop2LReXVwFEyknjdH5vZBKxs7SM4IcCM8+KjoqHoKmVlPcY21cDWuYWSBoc482td14Hf2qIRNiwXueoraKiirXRyXFr3je3m73R8Mbx5Zzn1JqOEz32N0MkL2OiiAcJW49FjQeOepV9E2LBqSjfVaiqpop6XoJJN5spnbu4xz5riqqYKq7W6mo371PRtZGJHEN38HLnceQUAibFmvEddWXerpm1cJpJqjfa99Q0saMnBHHhwPUo50IFmmdFKxzW1ILMvAc5oBG9u5z2KKRNiwT18Fwss81Q7duMUbYif6dm83BP0hjHgunRwDb7DO98ccUe9vue8NAy1wHNQqJvkdlRG6KUxvxvDngg/WFL6PO5dHzOkjjDYJAHPeG8S0gc+9QiKBYZX+drR5PNNFFXUJ9FpeGtmYezq3h29YX3S+UxaVY2mqGxTit6XdbO1rt3cxnGe1VtFOxMtpJBcKaonng6eeo6RzA9uGNBySTnA6+HclHWMoa+qo6sCWhncWzMaQcdj2945qGRNiQvYYbxUMgkbKzf3WPBGHDAAKztQRE0trDXxPMdM2J4bK0lrt4nBwVAomxM1cktthpaeMUz91vSOd6EnpniePHlwHqXdqmn8ouTKyB8LvKmNe9rZW+hIR6QPHhyyoBE2LFqejlrdRVEtO+nfFI9obJ07A34oGc5WLTU74Jp5LZX4qYZdxm7IGmRnW4doz1dih0TYmdTVJqXUjpzG6tEOKlzMcXbxxnHDOMZUMiJM7BERQCIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiD/9k=" alt="Logo">
+        <div class="hero-card-logo-text">
+          Oneonta Resident Rentals
+          <span>Local · Free · Community-Driven</span>
+        </div>
+      </div>
+      <h3>Find Your Next Home</h3>
+      <p>Browse available rentals in Oneonta — from apartments to storage units, all in one place.</p>
+      <div class="quick-search">
+        <div class="qs-label">Bedrooms</div>
+        <div class="qs-chips">
+          <div class="qs-chip sel" onclick="selectChip(this)">Any</div>
+          <div class="qs-chip" onclick="selectChip(this)">Studio</div>
+          <div class="qs-chip" onclick="selectChip(this)">1 Bed</div>
+          <div class="qs-chip" onclick="selectChip(this)">2 Bed</div>
+          <div class="qs-chip" onclick="selectChip(this)">3+</div>
+        </div>
+        <a class="qs-btn" href="https://www.oneontaresidentrentals.com/available-units">Search Available Units →</a>
+        <div class="qs-free">🏡 <span>2 listings live</span> · Updated regularly</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-label">Simple Process</div>
+  <h2 class="section-title">How Oneonta Resident Rentals Works</h2>
+  <p class="section-sub">Whether you're looking for a home or have one to offer, our process is simple, friendly, and completely free.</p>
+  <div class="steps">
+    <div class="step" data-num="1">
+      <div class="step-icon">🔍</div>
+      <h3>Browse Available Units</h3>
+      <p>Filter by bedrooms, price, and included utilities. Every listing is a real Oneonta property from a local landlord.</p>
+    </div>
+    <div class="step" data-num="2">
+      <div class="step-icon">📞</div>
+      <h3>Contact the Landlord</h3>
+      <p>Reach out directly through the listing. No middleman, no application fees — just a direct conversation with the property owner.</p>
+    </div>
+    <div class="step" data-num="3">
+      <div class="step-icon">🏠</div>
+      <h3>Move Into Your New Home</h3>
+      <p>Sign your lease and settle into your new place in Oneonta. We're here to help the whole community find stable, quality housing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED LISTINGS -->
+<section class="listings-section">
+  <div class="listings-inner">
+    <div class="listings-header-row">
+      <div>
+        <div class="section-label">Currently Available</div>
+        <h2 class="section-title" style="margin-bottom:0">Featured Listings</h2>
+      </div>
+      <a class="view-all" href="https://www.oneontaresidentrentals.com/available-units">View All Units →</a>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-img">
+          <img src="https://static.wixstatic.com/media/352137_f5e8916a45314ade9fbc43f2f791b7cc~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/352137_f5e8916a45314ade9fbc43f2f791b7cc~mv2.jpg" alt="43 Spruce St Unit 4">
+          <div class="card-badge">Available</div>
+          <div class="card-price">$875/mo</div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">43 Spruce St — Unit 4</div>
+          <div class="card-meta">
+            <div class="meta">🛏 1 Bedroom</div>
+            <div class="meta">🚿 1 Bathroom</div>
+          </div>
+          <div class="card-tags"><span class="tag">Residential</span><span class="tag">Oneonta, NY</span></div>
+          <div class="card-footer">
+            <a class="btn-view" href="https://www.oneontaresidentrentals.com/listings/example-st.-unit-4">View Listing →</a>
+            <button class="btn-save" onclick="toggleSave(this)">♡</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="https://static.wixstatic.com/media/352137_ea633584d7bf43178da4ce209ff18dd6~mv2.png/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/352137_ea633584d7bf43178da4ce209ff18dd6~mv2.png" alt="Dog-Gone Storage Inc.">
+          <div class="card-badge storage">Storage</div>
+          <div class="card-price">$90/mo</div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Dog-Gone Storage Inc.</div>
+          <div class="card-meta">
+            <div class="meta">📦 Storage Unit</div>
+            <div class="meta">📍 Oneonta, NY</div>
+          </div>
+          <div class="card-tags"><span class="tag">Storage</span><span class="tag">Available</span></div>
+          <div class="card-footer">
+            <a class="btn-view" href="https://www.oneontaresidentrentals.com/listings/dog-gone-storage-inc.">View Listing →</a>
+            <button class="btn-save" onclick="toggleSave(this)">♡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="why-inner">
+    <div class="why-left">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">A Free Service Built for the Oneonta Community</h2>
+      <p class="section-sub">We started this portal because too many Oneonta landlords couldn't get their properties in front of the right people — and too many residents didn't know where to look. We fixed that.</p>
+    </div>
+    <div class="why-right">
+      <div class="why-card">
+        <div class="why-icon">💸</div>
+        <h4>Always Free</h4>
+        <p>No listing fees, no subscription. We handle everything at no cost to you.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏘</div>
+        <h4>Non-Student Focus</h4>
+        <p>Built specifically for Oneonta's permanent residents, not just student housing.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h4>We Do the Work</h4>
+        <p>Can't list it yourself? Contact us and we'll create your listing for you.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📍</div>
+        <h4>Truly Local</h4>
+        <p>Real Oneonta properties from real Oneonta landlords — not big listing aggregators.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY QUOTES -->
+<section class="community">
+  <div class="section-label">Community First</div>
+  <h2 class="section-title">Built by Oneonta, for Oneonta</h2>
+  <p class="section-sub">We believe every Oneonta resident deserves a great place to call home — and every landlord deserves to find good tenants easily.</p>
+  <div class="quote-grid">
+    <div class="quote-card">
+      <div class="stars">★★★★★</div>
+      <div class="quote-text">"Finally a rental site that's actually for Oneonta locals and not just aimed at college students. Easy to use and totally free!"</div>
+      <div class="quote-author"><div class="quote-avatar">👩</div><div><div class="quote-name">Oneonta Resident</div><div class="quote-role">Found housing via portal</div></div></div>
+    </div>
+    <div class="quote-card">
+      <div class="stars">★★★★★</div>
+      <div class="quote-text">"I'm not tech-savvy at all but they listed my property for me. Had interest in the first week. Can't beat free!"</div>
+      <div class="quote-author"><div class="quote-avatar">👨</div><div><div class="quote-name">Local Landlord</div><div class="quote-role">Listed property for free</div></div></div>
+    </div>
+    <div class="quote-card">
+      <div class="stars">★★★★★</div>
+      <div class="quote-text">"Love that this is a community-driven resource. It fills a real gap for non-student housing options in our area."</div>
+      <div class="quote-author"><div class="quote-avatar">🏡</div><div><div class="quote-name">Oneonta Community Member</div><div class="quote-role">Referred others to the portal</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="cta-strip">
+  <h2>Have a Property to Rent in Oneonta?</h2>
+  <p>We'll list it for you — completely free. No tech skills needed, no fees, ever. Just reach out and we'll take care of it.</p>
+  <div class="cta-actions">
+    <a class="cta-btn-main" href="https://www.oneontaresidentrentals.com/pricing-plans/list">→ Add Your Free Listing</a>
+    <a class="cta-btn-outline" href="tel:6073864107">📞 (607) 386-4107</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-logo">
+        <img src="data:image/png;base64,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VEJkdje3sZBzn1Lsvdvp6Z8VwoW9Lb5XEBrycscObHY4+HaE0IVFMVr7bS1VUxlA159ERNc9xDRjJJOckrvr22+jbbZfN0UjZ4Gyyt6R/PeIIHHhwCaEAinNPUtvnuTzVMJp5peggycbrnZw71cPaFFPjdS1ropog50Ty17DkZxw6k0OhZdqrjQVgqfJ4ajAI3Jm5ac9yytUU9NSXiakpIejjiIAy4knIB45XNoozPb6qqipvKpoXMAi4nDTnLsDieQHrTXIzvfY75ktP6D+Ke+x3zJaf0H8VC3B9O97HQU5gO4BIzJI3uOSM8ccuCxvUp7pFk99jvmS0/of4p77HfMlp/Q/xVaRR3SMq5VXltbJU9BFBv49CJuGjh1LFRFAIiICIiAiIgIiICIiCftEksGnK4xSxNmfLG9jXObkhucnBXxfWx3FkV2p5Y9+Ubs8BkG9G8cOAJ+KeY7FBop2LReXVwFEyknjdH5vZBKxs7SM4IcCM8+KjoqHoKmVlPcY21cDWuYWSBoc482td14Hf2qIRNiwXueoraKiirXRyXFr3je3m73R8Mbx5Zzn1JqOEz32N0MkL2OiiAcJW49FjQeOepV9E2LBqSjfVaiqpop6XoJJN5spnbu4xz5riqqYKq7W6mo371PRtZGJHEN38HLnceQUAibFmvEddWXerpm1cJpJqjfa99Q0saMnBHHhwPUo50IFmmdFKxzW1ILMvAc5oBG9u5z2KKRNiwT18Fwss81Q7duMUbYif6dm83BP0hjHgunRwDb7DO98ccUe9vue8NAy1wHNQqJvkdlRG6KUxvxvDngg/WFL6PO5dHzOkjjDYJAHPeG8S0gc+9QiKBYZX+drR5PNNFFXUJ9FpeGtmYezq3h29YX3S+UxaVY2mqGxTit6XdbO1rt3cxnGe1VtFOxMtpJBcKaonng6eeo6RzA9uGNBySTnA6+HclHWMoa+qo6sCWhncWzMaQcdj2945qGRNiQvYYbxUMgkbKzf3WPBGHDAAKztQRE0trDXxPMdM2J4bK0lrt4nBwVAomxM1cktthpaeMUz91vSOd6EnpniePHlwHqXdqmn8ouTKyB8LvKmNe9rZW+hIR6QPHhyyoBE2LFqejlrdRVEtO+nfFI9obJ07A34oGc5WLTU74Jp5LZX4qYZdxm7IGmRnW4doz1dih0TYmdTVJqXUjpzG6tEOKlzMcXbxxnHDOMZUMiJM7BERQCIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiD/9k=" alt="Logo">
+        <div class="footer-brand-name">
+          Oneonta Resident Rentals
+          <span>Oneonta, NY · Est. 2025</span>
+        </div>
+      </div>
+      <p class="footer-desc">A free community resource connecting Oneonta landlords and residents. We help people who can't list their properties themselves get their homes in front of the right renters.</p>
+      <div class="footer-contact-item">📞 <a href="tel:6073864107">(607) 386-4107</a></div>
+      <div class="footer-contact-item">✉️ <a href="mailto:info@oneontaresidentrentals.com">info@oneontaresidentrentals.com</a></div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="https://www.oneontaresidentrentals.com">Home</a>
+      <a href="https://www.oneontaresidentrentals.com/available-units">All Units</a>
+      <a href="https://www.oneontaresidentrentals.com/pricing-plans/list">Add Your Listing</a>
+      <a href="https://www.oneontaresidentrentals.com/about">About Us</a>
+      <a href="https://www.oneontaresidentrentals.com/contact-8">Contact Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get Help</h4>
+      <a href="https://www.oneontaresidentrentals.com/contact-8">Can't list yourself?</a>
+      <a href="https://www.oneontaresidentrentals.com/contact-8">Report a listing issue</a>
+      <a href="https://www.oneontaresidentrentals.com/about">Our mission</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>©2025 Oneonta Resident Rentals, LLC. All rights reserved.</span>
+    <span style="color:rgba(255,255,255,0.3)">Serving the Oneonta, NY community</span>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function selectChip(el) {
+  el.closest('.qs-chips').querySelectorAll('.qs-chip').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function toggleSave(btn) {
+  btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
+  btn.style.color = btn.textContent === '♥' ? 'var(--purple)' : '';
+  btn.style.borderColor = btn.textContent === '♥' ? 'var(--purple)' : '';
+}
+// Close mobile menu on outside click
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobileMenu');
+  const hamburger = document.querySelector('.hamburger');
+  if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
